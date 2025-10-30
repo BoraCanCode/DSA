@@ -40,6 +40,31 @@ class LinkedList:
         temp.next=new
         new.next=remaining
 
+    def delete_at_head(self):
+        new_head = self.head.next
+        self.head.next=None
+        self.head=new_head
+    
+    def delete_at_tail(self):
+        if self.head==None:
+            return 
+        if self.head.next==None:
+            return 
+        prev=self.head
+        while prev.next.next!=None:
+            prev=prev.next
+        prev.next=None
+    
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current!=None:
+            remaining = current.next
+            current.next = prev
+            prev = current
+            current = remaining
+        self.head = prev
+
     def printList(self):
         if self.head is None:
             print('Empty List')
@@ -55,6 +80,9 @@ ll.insert_at_head(10)
 ll.insert_at_head(20)
 ll.insert_in_between(500,2)
 ll.insert_at_tail(30)
+ll.delete_at_head()
+ll.delete_at_tail()
+ll.reverse()
 ll.printList()
 
 
